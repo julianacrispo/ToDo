@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605151543) do
+ActiveRecord::Schema.define(version: 20140606004044) do
 
   create_table "items", force: true do |t|
     t.text     "description"
@@ -24,9 +24,10 @@ ActiveRecord::Schema.define(version: 20140605151543) do
 
   create_table "lists", force: true do |t|
     t.string   "name"
-    t.boolean  "public",     default: true
+    t.boolean  "public",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
 end
