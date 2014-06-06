@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
   def index
     @lists = List.all
+  
   end
 
   def new
@@ -11,6 +12,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.save
     redirect_to @list, notice: 'Your new List was saved'
+    #display the list you just created
   end
 
   def show
@@ -33,6 +35,11 @@ class ListsController < ApplicationController
 end
 
   def destroy
+    @list = List.find(params[:id])
+    if @list.destroy
+      flash[:notice] = "List was deleted successfully"
+      redirect_to @list
+    end
   end
 
   private

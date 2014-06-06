@@ -1,5 +1,5 @@
 <%= form_for List.new do |form| %>
   <%= form.text_field :name, placeholder: 'Name' %>
   <%= form.text_field :description, placeholder: 'Description' %>
-  <%= form.submit 'Save' %>
+  <%= form.submit 'Save', class: 'btn btn-default'%>
 <% end %>
