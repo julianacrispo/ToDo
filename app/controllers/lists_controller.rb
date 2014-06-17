@@ -1,11 +1,21 @@
+
 class ListsController < ApplicationController
   def index
     @lists = List.all
-  
   end
 
   def new
      @list = List.new
+  end
+
+  def show
+    @list = List.find(params[:id])
+    @items = @list.items
+    @item = Item.new
+  end
+
+  def edit
+    @list = List.find(params[:id])
   end
 
   def create
@@ -13,14 +23,6 @@ class ListsController < ApplicationController
     @list.save
     redirect_to @list, notice: 'Your new List was saved'
     #display the list you just created
-  end
-
-  def show
-    @list = List.find(params[:id])
-  end
-
-  def edit
-    @list = List.find(params[:id])
   end
 
   def update
@@ -31,8 +33,8 @@ class ListsController < ApplicationController
     # else
     #   flash [:error] = "there was an error saving the list, please try again"
     #   render :edit
+    end
   end
-end
 
   def destroy
     @list = List.find(params[:id])

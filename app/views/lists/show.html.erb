@@ -7,4 +7,9 @@
 <p><b> <%= @list.name %></b></p> 
 
 <p> <%= @list.description %></p>
-</div>
+
+<%= form_for [@list, @item] do |f| %>
+        <%= f.label :description %>
+        <%= f.text_field :description, placeholder: "Enter description name" %>
+      <%= f.submit "Save", class: 'btn btn-success' %>
+    <% end %>
