@@ -14,5 +14,27 @@
       <%= f.submit "Add", class: 'btn btn-success' %>
     <% end %>
 
-    <%= @list.items.to_a %>
-    <%= @list.items %>
+    <%= @list.items.count %> items todo
+  
+<div class="row">
+  <div class="col-md-8">
+    <%= @items.each do |item| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to item.description %>
+
+          </h4>
+          <small>
+            <%= item.created_at %>
+              <%= link_to "Delete Item", [@list, @item], 
+              method: :delete, remote: true %>
+          </small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+    
+

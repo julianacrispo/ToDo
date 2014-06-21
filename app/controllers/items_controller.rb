@@ -14,6 +14,21 @@ class ItemsController < ApplicationController
     redirect_to @list
   end
 
+  def destroy
+    #grab item from the list
+    @list = current_user.lists.find(params[:id_list])
+    @item = @list.items.find(params[:id])
+    #delete that item
+    if @item.destroy
+      flash[:notice] = "item was removed"
+    else
+      flash[:error] = "item couldn't be removed. try again"
+    end
+    respond_with(@item) do |f|
+      redirect_to @list
+    end
+  end
+
   private
 
   def item_params
@@ -24,31 +39,4 @@ class ItemsController < ApplicationController
 end
 
 
-  # def destroy
-  #   @topic = Topic.find(params[:topic_id])
-  #   @post = @topic.posts.find(params[:post_id])
-
-  #   @comment = @post.comments.find(params[:id])
-
-  #   authorize @comment
-  #   if @comment.destroy
-  #     flash[:notice] = "Comment was removed."
-  #    else
-  #     flash[:error] = "Comment couldn't be deleted. Try again."
-  #   end
-    
-  #   respond_with(@comment) do |f|
-  #     f.html { redirect_to [@topic, @post] }
-  #   end
-  # end
-
-
-# private
-
-#   def list_params
-#     params.require(:comment).permit(
-#       :body,
-#       :post_id
-#     )
-#   end
-# end
+ 

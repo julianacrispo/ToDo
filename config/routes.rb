@@ -4,7 +4,7 @@ ToDo::Application.routes.draw do
   get "welcome/lists"
 
   resources :lists do 
-    resources :items, only: [:create, :destroy]
+    resources :items, only: [:show, :create, :destroy]
   end
 
   root to: 'welcome#lists' 
