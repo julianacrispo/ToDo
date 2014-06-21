@@ -1,4 +1,11 @@
 class ItemsController < ApplicationController
+
+  def show
+    @list = current_user.lists.find(params[:list_id])
+    @item = @list.items
+    @item = Item.new
+  end
+
   def create
     @list = current_user.lists.find(params[:list_id])
 
@@ -24,10 +31,10 @@ class ItemsController < ApplicationController
     else
       flash[:error] = "item couldn't be removed. try again"
     end
-    respond_with(@item) do |f|
+    # respond_with(@item) do |f|
       redirect_to @list
     end
-  end
+
 
   private
 
