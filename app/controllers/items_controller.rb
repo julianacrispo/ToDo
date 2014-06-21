@@ -1,17 +1,17 @@
 class ItemsController < ApplicationController
-    def create
-      @list = List.find(params[:list_id])
-      @item = @list.item
+  def create
+    @list = current_user.lists.find(params[:list_id])
 
-      @item = Items.build( item_params )
-      @item.list = @list
-      @new_item = Item.new
+    @item = @list.items.build( item_params )
+    @item.list = @list
 
-      if @item.save
-        flash[:notice] = "Item was saved"
-      else
-        flash[:error] = "There was an error saving. Please try again"
+    if @item.save
+      flash[:notice] = "Item was saved"
+    else
+      flash[:error] = "There was an error saving. Please try again"
     end
+
+    redirect_to @list
   end
 
   private

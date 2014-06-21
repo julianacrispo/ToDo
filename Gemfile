@@ -28,6 +28,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'simple_form'
 gem 'devise'
 gem 'figaro'
+gem 'faker'
 gem 'country_select'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development

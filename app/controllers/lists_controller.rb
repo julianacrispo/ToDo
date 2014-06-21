@@ -1,7 +1,7 @@
 
 class ListsController < ApplicationController
   def index
-    @lists = List.all
+    @lists = current_user.lists.all
   end
 
   def new
@@ -19,7 +19,8 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(list_params)
+    @list = current_user.lists.build(list_params)
+    
     @list.save
     redirect_to @list, notice: 'Your new List was saved'
     #display the list you just created

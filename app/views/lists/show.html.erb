@@ -9,7 +9,10 @@
 <p> <%= @list.description %></p>
 
 <%= form_for [@list, @item] do |f| %>
-        <%= f.label :description %>
-        <%= f.text_field :description, placeholder: "Enter description name" %>
-      <%= f.submit "Save", class: 'btn btn-success' %>
+    
+        <%= f.text_field :description, placeholder: "Add Items to List Here" %>
+      <%= f.submit "Add", class: 'btn btn-success' %>
     <% end %>
+
+    <%= @list.items.to_a %>
+    <%= @list.items %>
