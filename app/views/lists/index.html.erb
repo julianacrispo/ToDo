@@ -1,21 +1,57 @@
-
 <div class="panel panel-primary">
-  <div class="panel-heading"> <h4><%= current_user.email %>'s lists </h3>
-</div>
-<div calss = "panel-body">
- <div class = "container"> 
-  <div class = "media-body">
-    <ul class="list-group">
-      <% @lists.each do |list| %> 
-      <span class="badge"> X# Items</span>
-        <%= link_to list.name, list %> 
-        <%= list.description %> 
+  <div class="panel-heading">
+    <%= current_user.email %>'s lists
   </div>
-    <% end %>
-</div>
 </div>
 
-<button type="button" class="btn btn-default btn-lg">
-  <span class="glyphicon glyphicon-pencil"></span> <%= link_to "Create New List", new_list_path %>
+<table class="table table-hover">
+  <thead>
+    <tr> 
+      <th> List Name </th>
+      <th> List Description</th>
+      <th> Number of Items </th>
+      <th> Action </th>
+    </tr>
+    
+  </thead>
+
+  <tbody>
+    <% @lists.each do |list| %> 
+    <tr>
+      <td> <%= link_to list.name, list %> </td>
+      <td> <%= list.description %> </td>
+      <td> # </td>
+      <td>    <%= link_to "Edit List", list, class: "btn btn-success" %>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> 
+  Create New List
 </button>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Create New List</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for List.new do |form| %>
+          <%= form.text_field :name, placeholder: 'Name' %>
+          <%= form.text_field :description, placeholder: 'Description' %>
+          <%= form.submit 'Create', class: 'btn btn-success'%>
+        <% end %>
+
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,20 @@
-<div class = "jumbotron"
-
-<h1>Welcome#lists</h1>
-<p>Find me in app/views/welcome/lists.html.erb</p>
-
+<div class = "jumbotron">
+  <div class = "row">
+    <div class= "col-md-4"> 
+      <img src="http://4.bp.blogspot.com/-cQ7tZ56cvfU/ThSFJgw32pI/AAAAAAAAABU/sYFMkdGNaC8/s1600/todo-manager-icon.png" alt="some_text">
+    </div>
+    <div class ="col-xs-12 col-md-8">
+      <div class = "home-btns">
+        <h2> 7 Days To Done</h2>
+        <% if current_user %>
+          <h3> Welcome <%= current_user.email %>! </h3> 
+          <%= link_to "My ToDo Lists", lists_path, class: 'btn btn-success
+          btn-lg'%>
+        <% else %>
+            <%= link_to "Sign In", new_user_session_path, class: 'btn btn-success btn-lg' %> or 
+            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-info btn-lg" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,14 +1,19 @@
  
 <div class="panel panel-primary">
-  <div class="panel-heading"><%= @list.name %> <span class="badge"><%= @list.items.count %> items</span>
+      <div class="panel-heading">  <%= @list.name %>
+     
+     <%= link_to "Edit", edit_list_path, class: 'btn btn-success'%>
+    <%= link_to "Delete", [@list], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this post?' } %>
+
   </div>
 </div>
+
 
 <table class="table table-hover">
   <thead>
     <tr> 
       <th> Description </th>
-      <th> Created At </th>
+      <th> Days Left to Complete </th>
       <th> Actions </th>
     </tr>
     
@@ -18,19 +23,28 @@
     <% @items.each do |item| %>
       <tr>
         <td> <%= item.description %> </td>
-        <td> <%= item.created_at %> </td>
+        <td> <%= time_ago_in_words(item.created_at + 7.days)%> </td>
         <td>
           <%#= link_to "mark as read", root_url, class: "btn btn-success" %>
-          <%= link_to "destroy", [@list, item], method: :delete, class: "btn btn-danger" %>
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-pencil"></span> <%= link_to " Completed", [@list, item], method: :delete %>
+           </button>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+
+ <%= form_for [@list, @item] do |f| %>
+    <%= f.text_field :description, placeholder: "Add Items to List Here" %>
+     <%= f.submit "Add", class: 'btn btn-success' %>
+ <% end %>
+
+    
+
+
  
 
- <%= link_to "Edit", edit_list_path, class: 'btn btn-success' %>
-  <%= link_to "Delete", [@list], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this post?' } %>
-    
+
 
