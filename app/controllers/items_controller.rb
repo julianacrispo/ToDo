@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
 
   def destroy
     #grab item from the list
-    @list = current_user.lists.find(params[:id_list])
+    @list = current_user.lists.find(params[:list_id])
     @item = @list.items.find(params[:id])
     #delete that item
     if @item.destroy

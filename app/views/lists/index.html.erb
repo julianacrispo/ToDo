@@ -1,15 +1,18 @@
 
 <div class="panel panel-primary">
-  <div class="panel-heading"> <h4><%= current_user.email %>'s lists </h3><span class="badge"> X# Total Lists</span>
+  <div class="panel-heading"> <h4><%= current_user.email %>'s lists </h3>
 </div>
-  
+<div calss = "panel-body">
  <div class = "container"> 
   <div class = "media-body">
-    <% @lists.each do |list| %> 
-      <%= link_to list.name, list %>
-      <%= list.description %> 
+    <ul class="list-group">
+      <% @lists.each do |list| %> 
+      <span class="badge"> X# Items</span>
+        <%= link_to list.name, list %> 
+        <%= list.description %> 
   </div>
     <% end %>
+</div>
 </div>
 
 <button type="button" class="btn btn-default btn-lg">
