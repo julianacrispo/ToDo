@@ -10,7 +10,7 @@
       <th> List Name </th>
       <th> List Description</th>
       <th> Number of Items </th>
-      <th> Action </th>
+      <th> Actions </th>
     </tr>
     
   </thead>
@@ -20,8 +20,9 @@
     <tr>
       <td> <%= link_to list.name, list %> </td>
       <td> <%= list.description %> </td>
-      <td> # </td>
-      <td>    <%= link_to "Edit List", list, class: "btn btn-success" %>
+      <td> <%= list.items.count %></td>
+      <td>    <%= link_to "Edit List", list, class: "btn btn-success" %> 
+      <%= link_to "Delete", list, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this post?' } %>
 
     </tr>
     <% end %>

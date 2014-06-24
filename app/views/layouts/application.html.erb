@@ -30,7 +30,9 @@
           <li class="active">
             <li><%= link_to "Home", welcome_lists_path %></li>
           </li>
-            <li><%= link_to "Lists", lists_path %></li>
+          <% if current_user %>
+            <li><%= link_to "My Lists", lists_path %></li>
+          <% end %>
         </ul>
       
         <ul class="nav navbar-nav navbar-right">

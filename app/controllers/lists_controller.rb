@@ -1,7 +1,7 @@
 
 class ListsController < ApplicationController
   def index
-    @lists = lists.all
+    @lists = current_user.lists.all
     @list = List.new
   end
 
@@ -21,7 +21,7 @@ class ListsController < ApplicationController
 
   def create
     @list = current_user.lists.build(list_params)
-    
+    authorize @list
     @list.save
     redirect_to @list, notice: 'Your new List was saved'
     #display the list you just created
@@ -49,7 +49,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :description)
+    params.require(:list).permit(:name, :description, :public)
   end
 
 end
